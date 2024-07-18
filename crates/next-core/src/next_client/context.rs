@@ -292,7 +292,7 @@ pub async fn get_client_module_options_context(
     let foreign_codes_options_context = ModuleOptionsContext {
         ecmascript: EcmascriptOptionsContext {
             enable_typeof_window_inlining: None,
-            ..Default::default()
+            ..module_options_context.ecmascript
         },
         enable_webpack_loaders: foreign_enable_webpack_loaders,
         enable_postcss_transform: enable_foreign_postcss_transform,
@@ -309,13 +309,13 @@ pub async fn get_client_module_options_context(
             enable_jsx: Some(jsx_runtime_options),
             enable_typescript_transform: Some(tsconfig),
             enable_decorators: Some(decorators_options),
-            ..Default::default()
+            ..module_options_context.ecmascript.clone()
         },
         enable_webpack_loaders,
         enable_mdx_rs,
         css: CssOptionsContext {
             use_swc_css,
-            ..Default::default()
+            ..module_options_context.css
         },
         rules: vec![
             (
@@ -330,7 +330,7 @@ pub async fn get_client_module_options_context(
                             TypescriptTransformOptions::default().cell(),
                         ),
                         enable_jsx: Some(JsxTransformOptions::default().cell()),
-                        ..Default::default()
+                        ..module_options_context.ecmascript.clone()
                     },
                     ..module_options_context.clone()
                 }

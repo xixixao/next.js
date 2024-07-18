@@ -535,7 +535,7 @@ pub async fn get_server_module_options_context(
             let module_options_context = ModuleOptionsContext {
                 ecmascript: EcmascriptOptionsContext {
                     esm_url_rewrite_behavior: url_rewrite_behavior,
-                    ..Default::default()
+                    ..module_options_context.ecmascript
                 },
                 ..module_options_context
             };
@@ -543,7 +543,7 @@ pub async fn get_server_module_options_context(
             let foreign_code_module_options_context = ModuleOptionsContext {
                 ecmascript: EcmascriptOptionsContext {
                     enable_typeof_window_inlining: None,
-                    ..Default::default()
+                    ..module_options_context.ecmascript
                 },
                 module_rules: foreign_next_server_rules.clone(),
                 enable_webpack_loaders: foreign_enable_webpack_loaders,
@@ -556,7 +556,7 @@ pub async fn get_server_module_options_context(
                 ecmascript: EcmascriptOptionsContext {
                     enable_typescript_transform: Some(TypescriptTransformOptions::default().cell()),
                     enable_jsx: Some(JsxTransformOptions::default().cell()),
-                    ..Default::default()
+                    ..module_options_context.ecmascript.clone()
                 },
                 module_rules: foreign_next_server_rules,
                 ..module_options_context.clone()
@@ -567,7 +567,7 @@ pub async fn get_server_module_options_context(
                     enable_jsx: Some(jsx_runtime_options),
                     enable_typescript_transform: Some(tsconfig),
                     enable_decorators: Some(decorators_options),
-                    ..Default::default()
+                    ..module_options_context.ecmascript
                 },
                 enable_webpack_loaders,
                 enable_postcss_transform,
@@ -607,7 +607,7 @@ pub async fn get_server_module_options_context(
             let foreign_code_module_options_context = ModuleOptionsContext {
                 ecmascript: EcmascriptOptionsContext {
                     enable_typeof_window_inlining: None,
-                    ..Default::default()
+                    ..module_options_context.ecmascript
                 },
                 module_rules: foreign_next_server_rules.clone(),
                 enable_webpack_loaders: foreign_enable_webpack_loaders,
@@ -618,7 +618,7 @@ pub async fn get_server_module_options_context(
             let internal_module_options_context = ModuleOptionsContext {
                 ecmascript: EcmascriptOptionsContext {
                     enable_typescript_transform: Some(TypescriptTransformOptions::default().cell()),
-                    ..Default::default()
+                    ..module_options_context.ecmascript.clone()
                 },
                 module_rules: foreign_next_server_rules,
                 ..module_options_context.clone()
@@ -629,7 +629,7 @@ pub async fn get_server_module_options_context(
                     enable_jsx: Some(jsx_runtime_options),
                     enable_typescript_transform: Some(tsconfig),
                     enable_decorators: Some(decorators_options),
-                    ..Default::default()
+                    ..module_options_context.ecmascript
                 },
                 enable_webpack_loaders,
                 enable_postcss_transform,
@@ -692,7 +692,7 @@ pub async fn get_server_module_options_context(
             let internal_module_options_context = ModuleOptionsContext {
                 ecmascript: EcmascriptOptionsContext {
                     enable_typescript_transform: Some(TypescriptTransformOptions::default().cell()),
-                    ..Default::default()
+                    ..module_options_context.ecmascript.clone()
                 },
                 module_rules: foreign_next_server_rules,
                 ..module_options_context.clone()
@@ -702,7 +702,7 @@ pub async fn get_server_module_options_context(
                     enable_jsx: Some(rsc_jsx_runtime_options),
                     enable_typescript_transform: Some(tsconfig),
                     enable_decorators: Some(decorators_options),
-                    ..Default::default()
+                    ..module_options_context.ecmascript
                 },
                 enable_webpack_loaders,
                 enable_postcss_transform,
@@ -750,7 +750,7 @@ pub async fn get_server_module_options_context(
             let module_options_context = ModuleOptionsContext {
                 ecmascript: EcmascriptOptionsContext {
                     esm_url_rewrite_behavior: Some(UrlRewriteBehavior::Full),
-                    ..Default::default()
+                    ..module_options_context.ecmascript
                 },
                 ..module_options_context
             };
@@ -764,7 +764,7 @@ pub async fn get_server_module_options_context(
             let internal_module_options_context = ModuleOptionsContext {
                 ecmascript: EcmascriptOptionsContext {
                     enable_typescript_transform: Some(TypescriptTransformOptions::default().cell()),
-                    ..Default::default()
+                    ..module_options_context.ecmascript.clone()
                 },
                 module_rules: internal_custom_rules,
                 ..module_options_context.clone()
@@ -774,7 +774,7 @@ pub async fn get_server_module_options_context(
                     enable_jsx: Some(rsc_jsx_runtime_options),
                     enable_typescript_transform: Some(tsconfig),
                     enable_decorators: Some(decorators_options),
-                    ..Default::default()
+                    ..module_options_context.ecmascript
                 },
                 enable_webpack_loaders,
                 enable_postcss_transform,
@@ -839,7 +839,7 @@ pub async fn get_server_module_options_context(
             let module_options_context = ModuleOptionsContext {
                 ecmascript: EcmascriptOptionsContext {
                     esm_url_rewrite_behavior: Some(UrlRewriteBehavior::Full),
-                    ..Default::default()
+                    ..module_options_context.ecmascript
                 },
                 ..module_options_context
             };
@@ -853,7 +853,7 @@ pub async fn get_server_module_options_context(
             let internal_module_options_context = ModuleOptionsContext {
                 ecmascript: EcmascriptOptionsContext {
                     enable_typescript_transform: Some(TypescriptTransformOptions::default().cell()),
-                    ..Default::default()
+                    ..module_options_context.ecmascript.clone()
                 },
                 module_rules: internal_custom_rules,
                 ..module_options_context.clone()
@@ -863,7 +863,7 @@ pub async fn get_server_module_options_context(
                     enable_jsx: Some(jsx_runtime_options),
                     enable_typescript_transform: Some(tsconfig),
                     enable_decorators: Some(decorators_options),
-                    ..Default::default()
+                    ..module_options_context.ecmascript
                 },
                 enable_webpack_loaders,
                 enable_postcss_transform,
