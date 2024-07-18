@@ -5658,11 +5658,13 @@
     "test/e2e/og-api/index.test.ts": {
       "passed": [
         "og-api should respond from index",
-        "og-api should work in app route",
-        "og-api should work in app route in node runtime",
-        "og-api should work in pages/api"
+        "og-api should work in app route in node runtime"
       ],
-      "failed": ["og-api should copy files correctly"],
+      "failed": [
+        "og-api should copy files correctly",
+        "og-api should work in pages/api",
+        "og-api should work in app route"
+      ],
       "pending": [],
       "flakey": [],
       "runtimeError": false
