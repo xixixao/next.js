@@ -60,26 +60,26 @@ async fn all_in_one() {
         let vc_42 = Vc::cell(42);
 
         let option: Vc<Option<Vc<u32>>> = Vc::cell(Some(vc_42));
-        assert_eq!(*option.is_some().await?, true);
-        assert_eq!(*option.is_none().await?, false);
+        assert!(*option.is_some().await?);
+        assert!(!(*option.is_none().await?));
         assert_eq!(&*option.await?, &Some(vc_42));
         assert_eq!(option.dbg().await?.to_string(), "Some(\n    42,\n)");
 
         let option: Vc<Option<Vc<u32>>> = Default::default();
-        assert_eq!(*option.is_some().await?, false);
-        assert_eq!(*option.is_none().await?, true);
+        assert!(!(*option.is_some().await?));
+        assert!(*option.is_none().await?);
         assert_eq!(&*option.await?, &None);
         assert_eq!(option.dbg().await?.to_string(), "None");
 
         let vec: Vc<Vec<Vc<u32>>> = Vc::cell(vec![vc_42]);
         assert_eq!(*vec.len().await?, 1);
-        assert_eq!(*vec.is_empty().await?, false);
+        assert!(!(*vec.is_empty().await?));
         assert_eq!(&*vec.await?, &[vc_42]);
         assert_eq!(vec.dbg().await?.to_string(), "[\n    42,\n]");
 
         let vec: Vc<Vec<Vc<u32>>> = Default::default();
         assert_eq!(*vec.len().await?, 0);
-        assert_eq!(*vec.is_empty().await?, true);
+        assert!(*vec.is_empty().await?);
         assert_eq!(vec.dbg().await?.to_string(), "[]");
 
         let vec: Vc<Vec<Vc<Vec<Vc<u32>>>>> = Default::default();
@@ -88,25 +88,25 @@ async fn all_in_one() {
 
         let set: Vc<IndexSet<Vc<u32>>> = Vc::cell(IndexSet::from([vc_42]));
         assert_eq!(*set.len().await?, 1);
-        assert_eq!(*set.is_empty().await?, false);
+        assert!(!(*set.is_empty().await?));
         assert_eq!(&*set.await?, &IndexSet::from([vc_42]));
         assert_eq!(set.dbg().await?.to_string(), "{\n    42,\n}");
 
         let set: Vc<IndexSet<Vc<u32>>> = Default::default();
         assert_eq!(*set.len().await?, 0);
-        assert_eq!(*set.is_empty().await?, true);
+        assert!(*set.is_empty().await?);
         assert_eq!(&*set.await?, &IndexSet::<Vc<u32>>::default());
         assert_eq!(set.dbg().await?.to_string(), "{}");
 
         let map: Vc<IndexMap<_, _>> = Vc::cell(IndexMap::from([(vc_42, vc_42)]));
         assert_eq!(*map.len().await?, 1);
-        assert_eq!(*map.is_empty().await?, false);
+        assert!(!(*map.is_empty().await?));
         assert_eq!(&*map.await?, &IndexMap::from([(vc_42, vc_42)]));
         assert_eq!(map.dbg().await?.to_string(), "{\n    42: 42,\n}");
 
         let map: Vc<IndexMap<Vc<u32>, Vc<u32>>> = Default::default();
         assert_eq!(*map.len().await?, 0);
-        assert_eq!(*map.is_empty().await?, true);
+        assert!(*map.is_empty().await?);
         assert_eq!(&*map.await?, &IndexMap::<Vc<u32>, Vc<u32>>::default());
         assert_eq!(map.dbg().await?.to_string(), "{}");
 
